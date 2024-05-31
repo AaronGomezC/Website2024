@@ -1,127 +1,109 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-@import url('');
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f71010;
-            margin: 0;
-            padding: 20px;
-        }
-
-header {
-    height: 100%;
-    width: 100%;
-    background-color: #F6F6F6;
-    padding: 20px;
-}
-
-/*--------------------------------------------------------------------------- NAVLIST MENU -------------------------------------*/
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+body{    
+    background: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
   }
   
-  li {
-    float: left;
+  .navbar-brand{
+      font-size: 35px;
   }
   
-  li a {
-    display: block;
-    color: white;
+  #form {
+    background-color: #f0f5ff; /* Light blue background */
+    width: 28%;
+    border-radius: 6px;
+    margin: 120px auto;
+    padding: 40px;
+    box-shadow: 10px 10px 5px #4e7ad2; /* Darker blue shadow */
+    margin-top: 25px;
+}
+
+h1 {
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    color: #4e7ad2; /* Dark blue text */
+}
+
+input {
+    width: 90%;
+    border-radius: 4px;
+    border: 3px solid #dfe6f1; /* Lighter blue border */
+    padding: 5px;
+}
+
+#btn {
+    width: 100%;
+    color: #ffffff;
+    background-color: #4e7ad2; /* Dark blue button */
+    padding: 10px;
+    font-weight: 700;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+form label {
+    color: #4e7ad2; /* Dark blue label */
+    font-size: 18px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1350px) {
+    #form {
+        width: 40%;
+        margin-left: none;
+        padding: 40px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #form {
+        width: 50%;
+        margin-left: none;
+        padding: 40px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #form {
+        width: 80%;
+        margin-left: none;
+        padding: 40px;
+    }
+}
+
+
+    .card {
+      width: 100%;
   }
   
-  li a:hover {
-    background-color: #111;
+  .card-img-top {
+      height: 200px; /* Set a fixed height for the images */
+      object-fit: cover; /* Ensure the image covers the entire space */
   }
-
-/*--------------------------------------------------------------------------- MAIN -----------------------------------------*/
-
-main {
-    width: 100%;
-    height: auto;
-    background-color: #F2F2F2;
-    color: whitesmoke;
-}
-
-        .product-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.custom-section {
-    padding-top: 50px; /* Increase top padding */
-    padding-bottom: 50px; /* Increase bottom padding */
+  
+  .card-body {
+      height: 100%; /* Ensure the card body takes up the entire height */
+      display: flex;
+      flex-direction: column;
   }
-
-.product {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center the content within each product */
-}
-
-.product img {
-    max-width: 100%;
+  
+  .card-title {
+      flex-grow: 1; /* Allow the title to take up remaining space */
+  }
+  
+  .card-text {
+      margin-bottom: auto; /* Push the text to the top */
+  }
+    
+  .small-image {
+    max-width: 400px; /* Adjust the max-width as per your requirement */
     height: auto;
-    border-radius: 8px;
 }
 
-.product h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #333;
+.zoom-img {
+  transition: transform 0.5s ease;
 }
-
-.product p {
-    color: #777;
-}
-
-.product-price {
-    color: #e44d26;
-    font-weight: bold;
-}
-
-.add-to-cart-btn {
-    background-color: #000000;
-    color: white;
-    padding-top: 20;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
-/*--------------------------------------------------------------------------- FOOTER ------------------------------------------------*/
-
-.footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
-.footer a {
-    color: #fff;
-    margin: 0 15px;
-    text-decoration: none;
-}
-.footer a:hover {
-    text-decoration: underline;
+.zoom-img:hover {
+  transform: scale(1.1);
 }
