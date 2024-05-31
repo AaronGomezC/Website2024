@@ -1,63 +1,14 @@
-<?php
-session_start();
-
-// Database connection
-$db_host = "your_database_host";
-$db_username = "your_database_username";
-$db_password = "your_database_password";
-$db_name = "your_database_name";
-
-$conn = new mysqli($db_host, $db_username, $db_password, $db_name);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Function to sanitize user input
-function sanitize_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-// Signup logic
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = sanitize_input($_POST['name']);
-    $email = sanitize_input($_POST['email']);
-    $password = sanitize_input($_POST['password']);
-
-    // Hash the password before storing in the database
-    $hashed_password = md5($password);
-
-    // Check if the email is already registered
-    $check_sql = "SELECT id FROM accounts WHERE email='$email'";
-    $check_result = $conn->query($check_sql);
-
-    if ($check_result->num_rows == 0) {
-        // Email is not registered, proceed with signup
-        $signup_sql = "INSERT INTO accounts (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
-        if ($conn->query($signup_sql) === TRUE) {
-            $_SESSION['loggedin'] = true;
-            $_SESSION['email'] = $email;
-            header("Location: dashboard.php"); // Redirect to dashboard after successful signup
-            exit;
-        } else {
-            $error = "Error: " . $signup_sql . "<br>" . $conn->error;
-        }
-    } else {
-        $error = "Email is already registered";
-    }
-}
-
-?>
-
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Sign Up</title>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SIGN UP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <?php include 'navbar.php';?>
 
 <h2>Sign Up</h2>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -73,10 +24,9 @@ if (isset($error)) {
 }
 ?>
 
+<?php include 'footer.php';?>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
-
-<?php
-// Close database connection
-$conn->close();
-?>
